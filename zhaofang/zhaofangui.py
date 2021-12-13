@@ -13,7 +13,7 @@ class Zhaofang(unittest.TestCase):
         self.url1= "http://portal-ehouse-java.itheima.net/#/login?redirect=%2F" #前
         self.url2= "http://manager-ehouse-java.itheima.net/#/login?redirect=%2Fhome%2Findex"#后
     def test_qiantai(self):
-        #try:
+        try:
             self.driver = webdriver.Chrome()
             self.driver.implicitly_wait(2)
             self.driver.get(self.url1)
@@ -33,13 +33,14 @@ class Zhaofang(unittest.TestCase):
             self.driver.find_element_by_class_name('spec').click()#点击查看详情
             self.driver.find_element_by_xpath('//*[@id="app"]/div/div[3]/div/div[2]/div[2]/div/button/span').click()#取消选购
             self.driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/p/span[2]').click()#退出登录
-        #except:
-            #now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
-            #print ("前台有错误请看截图")
-            #self.driver.get_screenshot_as_file("D:\\myproject\\zhaofang\\errorpic\\"+now+".png")
+        except:
+            now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+            print ("前台有错误请看截图")
+            self.driver.get_screenshot_as_file("D:\\myproject\\zhuimengks\\zhaofang\\errorpic\\"+now+".png")
 
     def test_houtai(self):
-        #try:
+        try:
+        
             self.driver = webdriver.Chrome()
             self.driver.implicitly_wait(2)
             self.driver.get(self.url2)
@@ -114,27 +115,30 @@ class Zhaofang(unittest.TestCase):
             time.sleep(1)
             self.driver.find_element_by_xpath('//*[@id="app"]/div/div[2]/div[2]/section/div/div[3]/div/div[3]/div/button[2]/span').click() #确定
             self.driver.find_element_by_xpath('//*[@id="app"]/div/div[2]/div[1]/div[1]/div/ul/div[6]/a/li/span').click()#f房屋认证
-        #except:
-            #now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
-            #print("后台有错误请看截图")
-            #self.driver.get_screenshot_as_file("D:\\myproject\\zhaofang\\errorpic\\" + now + ".png")
+        except:
+            now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+            print("后台有错误请看截图")
+            self.driver.get_screenshot_as_file("D:\\myproject\\zhuimengks\\zhaofang\\errorpic\\" + now + ".png")
     def tearDown(self):
         self.driver.quit()
 
 if __name__ == '__main__':
     #unittest.main()
     suite = unittest.TestSuite()
-    #suite.addTest(zhaofangui.Zhaofang("test_qiantai"))
+    suite.addTest(zhaofangui.Zhaofang("test_qiantai"))
+
     suite.addTest(zhaofangui.Zhaofang("test_houtai"))
+
     now = time.strftime("%Y-%m-%d %H_%M_%S")
+
     # 定义报告存放路径
-    filename = 'D:\\myproject\\zhaofang\\report\\report ' + now + 'result.html'
+    filename = 'D:\\myproject\\zhuimengks\\zhaofang\\report\\report ' + now + 'result.html'
     fp = open(filename, 'wb')
+
     # 定义测试报告
     runner = HTMLTestRunner(stream=fp, title='测试报告', description='用例执行情况：')
+
     runner.run(suite)
+
     fp.close()  # 关闭报告文件
-
-
-    #123123132132
 
