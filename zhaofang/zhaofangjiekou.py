@@ -50,6 +50,12 @@ class MyTestCase(unittest.TestCase):
         r6 = requests.get(self.url6, headers=self.headers2)
         print(r6.text)
 
+        print("取消购买")
+        self.url8 = 'http://portal-ehouse-java.itheima.net/api/house-order/house_orders/1197/cancel/35061'
+        r8 =requests.put(self.url8,headers=self.headers2)
+        print(r8)
+
+
 
 
 
