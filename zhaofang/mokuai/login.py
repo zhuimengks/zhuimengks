@@ -4,32 +4,25 @@ import unittest
 import requests, json
 import re
 #登录
-'''url1 = "http://portal-ehouse-java.itheima.net/api/login/users/signin"
-data  = {
-    "username":"chenchuan",
-    "password":"123456"
-        }
-headers = {"Content-Type":"application/json"}
-res = requests.put(url=url1, data=json.dumps(data),headers = headers)
-print(res.text)'''
-class Zhiwei(unittest.TestCase):
 
-    def test_denglu(self):
-        url1 = "http://portal-ehouse-java.itheima.net/api/login/users/signin"
-        data = {
-            "username": "chenchuan",
-            "password": "123456"
-        }
-        headers = {"Content-Type": "application/json"}
-        res = requests.put(url=url1, data=json.dumps(data), headers=headers)
-        res_1 = res.json()    #返回的类型还未转换为json格式
-        #lg_token = res.json().get('token')
-        print(res_1["token"])
-        #print(res.text)
+#class Zhiwei(unittest.TestCase):
 
-        return res_1["token"]
-if __name__ == '__main__':
-    unittest.main()
+def test_denglu(self):
+    url1 = "http://portal-ehouse-java.itheima.net/api/login/users/signin"
+    data = {
+        "username": "chenchuan",
+        "password": "123456"
+    }
+    headers = {"Content-Type": "application/json"}
+    res = requests.put(url=url1, data=json.dumps(data), headers=headers)
+    res_1 = res.json()    #返回的类型还未转换为json格式
+
+    print("登录token是:"+res_1["token"])
+
+
+    return res_1["token"]
+#if __name__ == '__main__':
+#    unittest.main()
 
 
 

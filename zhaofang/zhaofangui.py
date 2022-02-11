@@ -124,6 +124,7 @@ class Zhaofang(unittest.TestCase):
 
 if __name__ == '__main__':
     #unittest.main()
+    print("运行main")
     suite = unittest.TestSuite()
     suite.addTest(zhaofangui.Zhaofang("test_qiantai"))
 

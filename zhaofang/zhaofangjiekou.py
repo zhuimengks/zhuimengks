@@ -1,5 +1,14 @@
 import unittest
 import requests
+import os
+import sys
+path = os.getcwd() + "/../mokuai"
+sys.path.append(path)
+from mokuai import login
+from mokuai import login
+import time
+from HTMLTestRunner import HTMLTestRunner
+
 
 
 
@@ -14,6 +23,7 @@ class MyTestCase(unittest.TestCase):
         print (r.text)
         #接口为put接口所以参数放置不一样
         print (r.json()['token']) #获得返回接口中的token
+        #r = login.test_denglu(self) 引入登录接口
 
         #房屋列表接口
         self.url2 = 'http://portal-ehouse-java.itheima.net/api/house-order/sales/list'
@@ -54,18 +64,23 @@ class MyTestCase(unittest.TestCase):
         self.url8 = 'http://portal-ehouse-java.itheima.net/api/house-order/house_orders/1197/cancel/35061'
         r8 =requests.put(self.url8,headers=self.headers2)
         print(r8)
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(zhaofangjiekou.MyTestCase("test_login"))
+
+
+    now = time.strftime("%Y-%m-%d %H_%M_%S")
+
+    # 定义报告存放路径
+    filename = 'D:\\myproject\\zhuimengks\\zhaofang\\report\\report ' + now + 'result.html'
+    fp = open(filename, 'wb')
+
+    # 定义测试报告
+    runner = HTMLTestRunner(stream=fp, title='测试报告', description='用例执行情况：')
+
+    runner.run(suite)
+
+    fp.close()  # 关闭报告文件
+
 
